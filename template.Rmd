@@ -10,11 +10,38 @@ library(haven)
 ```
 
 
-
+## Let's Import a dataset
 ```{r}
 litter_df=
   read_csv("data/FAS_litters.csv", na = c("NA", ".", " "))
 ```
+
+## Look at your data!!
+
+```{r}
+names(litters_df)
+```
+
+## Update the name in "litter_df".
+
+```{r}
+litter_df =
+   janitor::clean_names(litter_df)
+```
+
+## Look at the data!
+
+```{r}
+litter_df
+```
+
+Sometimes skimming data is neat?
+```{r}
+skimr::skim(litter_df)
+```
+
+
+
 ```{r}
 pups_df=
   read_csv("data/FAS_pups.csv", 
@@ -37,6 +64,8 @@ Import LotR word counts.
 ```{r}
 firt_df = 
   read_excel("data/LotR_Words.xlsx", range = "B3:D6")
+
+firt_df
 ```
 
 
@@ -58,6 +87,13 @@ pulse_df =
 ```{r eval = FALSE}
 litter_df_base = read.csv("data/FAS_litters.csv")
 ```
+
+# What about data exporting?
+
+```{r}
+write_csv(firt_df, "data/firt_df.csv")
+```
+
 
 
 
