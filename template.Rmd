@@ -1,0 +1,65 @@
+---
+title: "Data Import"
+output: github_document
+---
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(haven)
+```
+
+
+
+```{r}
+litter_df=
+  read_csv("data/FAS_litters.csv", na = c("NA", ".", " "))
+```
+```{r}
+pups_df=
+  read_csv("data/FAS_pups.csv", 
+           skip = 3,
+           na = c("NA", ".", " "))
+
+pups_df = 
+  janitor::clean_names(pups_df)
+```
+## Okay what about excel
+
+CSVs are really great but sometimes you get an excel file.
+
+```{r}
+mlb_df = 
+  read_excel("data/mlb11.xlsx")
+```
+
+Import LotR word counts.
+```{r}
+firt_df = 
+  read_excel("data/LotR_Words.xlsx", range = "B3:D6")
+```
+
+
+## SAS????
+
+Import the  PULSE data
+
+```{r}
+pulse_df = read_sas("data/public_pulse_data.sas7bdat")
+
+pulse_df =
+        janitor::clean_names(pulse_df)
+
+
+```
+
+## Why do I hate read.csv so much??
+
+```{r eval = FALSE}
+litter_df_base = read.csv("data/FAS_litters.csv")
+```
+
+
+
+
+
