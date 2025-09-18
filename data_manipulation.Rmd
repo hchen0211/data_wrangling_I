@@ -1,0 +1,70 @@
+---
+title: "data_manipulation"
+output: github_document
+---
+
+```{r}
+library(tidyverse)
+library(dplyr)
+```
+
+lET'S Import datasets
+
+```{r}
+
+litter_df <- 
+  read_csv("data/FAS_litters.csv", na = c("NA", ".", " "))
+
+litters_df <- 
+    janitor::clean_names(litter_df)
+
+pups_df <- 
+  read_csv("data/FAS_pups.csv" , skip = 3 , na = c("NA", ".", " "))
+
+pups_df <- 
+      janitor::clean_names(pups_df)
+
+```
+
+
+#select 
+
+```{r}
+select(litters_df, group, litter_number, gd0_weight)
+```
+```{r}
+select(litters_df, group:gd_of_birth)
+select(litters_df, -group)
+```
+select by prefix
+```{r}
+select(litters_df, group, starts_with("gd"))
+```
+
+rerrange by selecting
+
+```{r}
+select(litters_df, starts_with("gd"), group)
+select(litters_df, litter_number, everything())
+```
+
+reaname by selecting
+
+```{r}
+select(litters_df, 团队 = group, everything())
+rename(litters_df, fuck = group)
+
+```
+
+What if i only select one variable ?
+
+```{r}
+select(litters_df, group)
+```
+
+assessment
+```{r}
+select(pups_df, litter_number, sex, pd_ears)
+```
+
+
